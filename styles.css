@@ -3,6 +3,8 @@ body {
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
+  margin: 0;
+  padding: 0;
 }
 
 #contactText {
@@ -22,6 +24,8 @@ body {
 #bottomHalf{
     background-color: blue;
     color: white;
+    margin: 0;
+    padding: 10px;
 }
 
 #name {
@@ -70,7 +74,7 @@ body {
 /* Menu + items */
 .menu { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .menu a { text-decoration: none; color: #111; padding: 8px 10px; display: block; border-radius: 8px; }
-.menu a:hover, .submenu a:hover { background: #f5f5f5; }
+.menu a:hover, .submenu a:hover { background: #f5f5f5; font-weight: 500;}
 
 /* “Projects” uses same font as site */
 .submenu-toggle {
@@ -152,5 +156,5 @@ body {
 .resume-link:hover {
   background: white;
   color: #0b0b0c;                 /* dark text on hover */
-  transform: translateY(-1px);
+  font-weight: 500;
 }
