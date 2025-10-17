@@ -294,3 +294,25 @@ body {
 }
 
 .vbar { justify-self: start; } /* nudges the bar toward the right edge of its column */
+
+#contactPageHeader{
+    font-size: 50px;
+}
+
+/* Add spacing after the Projects dropdown */
+.has-submenu {
+  margin-right: 14px; /* pushes Contact farther away */
+}
+
+/* Add internal spacing between “Projects” text and chevron */
+.submenu-toggle {
+  padding-right: 16px; /* increases space before the arrow */
+  column-gap: 10px;    /* ensures text–arrow gap is consistent */
+}
+
+/* Optionally increase total menu item gap for desktop */
+@media (min-width: 840px) {
+  .menu {
+    gap: 20px; /* wider spacing between all top-level links */
+  }
+}

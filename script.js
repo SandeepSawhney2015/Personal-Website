@@ -72,12 +72,38 @@ submenu?.addEventListener('click', (e) => {
     }
   });
 
-  // If we're on a Projects subpage, open & highlight its parent toggle
-  if (activeLink && activeLink.closest('.submenu')) {
-    // Uses your existing function from above
-    typeof setSubmenu === 'function' && setSubmenu(true);
+    // If we're on a Projects subpage, only auto-open the submenu on mobile
+    if (activeLink && activeLink.closest('.submenu')) {
+    const isMobile = window.matchMedia('(max-width: 900px)').matches
+        || nav?.dataset.state === 'open'; // slide-out nav open counts as mobile UX
+
     document.querySelector('.submenu-toggle')?.classList.add('active');
-  }
+    typeof setSubmenu === 'function' && setSubmenu(!!isMobile);
+    }
+
+    // Optional: desktop hover behavior (no stickiness)
+    const submenuContainer = document.querySelector('.has-submenu');
+    const isMobileView = () => window.matchMedia('(max-width: 900px)').matches;
+
+    submenuContainer?.addEventListener('mouseenter', () => {
+    if (!isMobileView()) setSubmenu(true);
+    });
+    submenuContainer?.addEventListener('mouseleave', () => {
+    if (!isMobileView()) setSubmenu(false);
+    });
+
+    // Keep things correct on resize (e.g., rotate phone / resize browser)
+    window.addEventListener('resize', () => {
+    if (!submenuContainer) return;
+    if (isMobileView()) {
+        // let mobile keep submenu closed by default; it opens via click
+        setSubmenu(false);
+    } else {
+        // on desktop, default closed until hovered
+        setSubmenu(false);
+    }
+});
+
 })();
 
 // ===== HERO INTRO SEQUENCE (first landing only) =====

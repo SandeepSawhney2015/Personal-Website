@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<header>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sandeep Sawhney — Portfolio</title>
+  <!--Favicon image-->
+  <link rel="icon" type="image/png" href="favacon-modified.png">
+
+  <!--Importing fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<header class="topbar">
+  <!-- Left: Hamburger -->
+  <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- Slide-out / Collapsible Nav (from LEFT) -->
+  <nav id="primary-nav" class="nav nav-left" data-state="closed">
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+
+      <li class="has-submenu">
+        <button class="submenu-toggle" aria-expanded="false">
+          <span class="submenu-label">Projects</span>
+          <svg aria-hidden="true" class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <ul class="submenu" hidden>
+          <li><a href="projects/hardware.html">Hardware</a></li>
+          <li><a href="projects/software.html">Software</a></li>
+        </ul>
+      </li>
+
+      <li><a href="contact.html">Contact</a></li>
+
+      <li>
+        <a href="SandeepSawhneyResume.pdf"
+          class="resume-link"
+          target="_blank"
+          download="SandeepSawhneyResume.pdf">
+          Resume
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <a href="https://www.instagram.com/sanders11_/" target="_blank" rel="noopener noreferrer">
+    <img src="iconHeaderBar.png" alt="Sandeep icon" class="topbar-icon">
+  </a>
+</header>
+<body>
+    <section>
+        <center><h1 id="contactPageHeader">Contact Page</h1></center>
+    </section>
+    <div id="bottomHalf">
+    <main>
+      <section id="contact">
+        <h2>Contact & Profiles</h2>
+        <p id="contactText">
+          <a href="mailto:ssawhney@umich.edu">
+            <img src="gmailIcon.png" alt="Gmail" width="40" height="40" class="ContactIcons">
+          </a>
+          |
+          <a href="https://www.linkedin.com/in/sandeep-sawhney-894b12301/" target="_blank" rel="noopener noreferrer">
+            <img src="InBug-Black.svg" alt="LinkedIn" width="30" height="30" class="ContactIcons">
+          </a>
+          |
+          <a href="https://www.instagram.com/sanders11_/" target="_blank" rel="noopener noreferrer">
+            <img src="instagramIcon.png" alt="Instagram" width="30" height="30" class="ContactIcons">
+          </a>
+          |
+          <a href="https://github.com/SandeepSawhney2015" target="_blank" rel="noopener noreferrer">
+            <img src="github-mark.png" alt="GitHub" width="30" height="30" class="ContactIcons">
+          </a>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <small>&copy; <span id="year"></span> Sandeep Sawhney</small>
+      <br>
+      <small>
+        <a href="https://ece.engin.umich.edu/about/" id="umichECELink">Student @ University of Michigan</a>
+      </small>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js" defer></script>
+</body>
+</html>
+</body>
