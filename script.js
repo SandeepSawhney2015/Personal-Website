@@ -43,3 +43,112 @@ submenu?.addEventListener('click', (e) => {
     toggleNav(false);
   }
 });
+
+// Highlight current page in the top bar and submenu
+(function () {
+  const links = document.querySelectorAll('#primary-nav a');
+  // Normalize current file (treat "/" as "index.html")
+  const currentPath = window.location.pathname;
+  const currentFile = currentPath.endsWith('/')
+    ? 'index.html'
+    : currentPath.split('/').pop();
+
+  let activeLink = null;
+
+  links.forEach((a) => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+
+    // Resolve relative hrefs to a file name (treat folder routes as index.html)
+    const url = new URL(href, window.location.origin);
+    const file = url.pathname.endsWith('/')
+      ? 'index.html'
+      : url.pathname.split('/').pop();
+
+    if (file === currentFile) {
+      a.classList.add('active');
+      a.setAttribute('aria-current', 'page'); // accessibility
+      activeLink = a;
+    }
+  });
+
+  // If we're on a Projects subpage, open & highlight its parent toggle
+  if (activeLink && activeLink.closest('.submenu')) {
+    // Uses your existing function from above
+    typeof setSubmenu === 'function' && setSubmenu(true);
+    document.querySelector('.submenu-toggle')?.classList.add('active');
+  }
+})();
+
+// ===== HERO INTRO SEQUENCE (first landing only) =====
+(function () {
+  const hero = document.querySelector('.hero');
+  const nameEl = document.querySelector('.slide-name');
+  const vbar = document.querySelector('.vbar');
+  const wrap = document.getElementById('typewrap');
+  if (!hero || !nameEl || !vbar || !wrap) return;
+
+  const lines = [...wrap.querySelectorAll('span[data-text]')];
+
+  const TYPE_SPEED = 30;   // ms per character
+  const LINE_GAP = 250;    // delay between lines
+
+  // Only play once per session
+  const alreadyPlayed = sessionStorage.getItem('introPlayed');
+
+  // Render final state instantly (no typing) if already played
+  function snapToEnd() {
+    hero.classList.add('played', 'typing');
+    // force bar to full height (CSS handles it), and set all lines visible
+    lines.forEach((span) => {
+      span.textContent = span.getAttribute('data-text') || '';
+      span.classList.remove('typing');
+    });
+  }
+
+  // Simple typewriter for one line
+  function typeLine(span, text) {
+    return new Promise((resolve) => {
+      span.classList.add('typing');
+      let i = 0;
+      const tick = () => {
+        if (i <= text.length) {
+          span.textContent = text.slice(0, i);
+          i++;
+          setTimeout(tick, TYPE_SPEED);
+        } else {
+          span.classList.remove('typing');
+          resolve();
+        }
+      };
+      tick();
+    });
+  }
+
+  async function runIntro() {
+    // slide name left
+    hero.classList.add('played');
+
+    // wait a bit for the bar to drop start
+    setTimeout(() => hero.classList.add('typing'), 500);
+
+    // type lines sequentially
+    for (const span of lines) {
+      const text = span.getAttribute('data-text') || '';
+      await typeLine(span, text);
+      await new Promise(r => setTimeout(r, LINE_GAP));
+    }
+
+    sessionStorage.setItem('introPlayed', '1');
+  }
+
+  // Kick off
+  if (alreadyPlayed) {
+    snapToEnd();
+  } else {
+    // Start after DOM is ready & a short beat for a nicer feel
+    window.requestAnimationFrame(() => {
+      setTimeout(runIntro, 250);
+    });
+  }
+})();

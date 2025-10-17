@@ -15,6 +15,11 @@ body {
     vertical-align: middle;
     margin-left: 4px;
     filter: invert(1) brightness(2);
+    transition: transform 0.25s ease;
+}
+
+.ContactIcons:hover{
+    transform: scale(1.25);
 }
 
 #contact a {
@@ -41,8 +46,14 @@ body {
   justify-content: flex-start;  /* left side */
   gap: 12px;
   padding: 10px 16px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  background: blue;
+  border-bottom: 1px solid blue;
+}
+
+.topbar a,
+.menu a,
+.submenu-toggle {
+  color: white;          /* all nav text white */
 }
 
 /* Hamburger */
@@ -62,19 +73,19 @@ body {
   inset: 0 auto 0 0;          /* attach to left edge */
   width: 78%;
   max-width: 320px;
-  background: #fff;
-  border-right: 1px solid #eee;
+  background: blue;
+  border-right: 1px solid blue;
   transform: translateX(-100%); /* hidden off-screen to the left */
   opacity: 0;
-  transition: transform .28s ease, opacity .28s ease;
+  transition: all .25s ease, opacity .28s ease;
   padding: 16px;
 }
 .nav-left[data-state="open"] { transform: translateX(0); opacity: 1; }
 
 /* Menu + items */
 .menu { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.menu a { text-decoration: none; color: #111; padding: 8px 10px; display: block; border-radius: 8px; }
-.menu a:hover, .submenu a:hover { background: #f5f5f5; font-weight: 500;}
+.menu a { text-decoration: none; color: white; padding: 8px 10px; display: block; border-radius: 8px; }
+.menu a:hover, .submenu a:hover { background: darkblue; font-weight: 500;}
 
 /* “Projects” uses same font as site */
 .submenu-toggle {
@@ -87,9 +98,9 @@ body {
   font: inherit;              /* inherit font family/size/weight */
   color: inherit;
 }
-.submenu-label { font: inherit; }
+.submenu-label { font: inherit; color: white;}
 
-.chevron { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform .22s ease; }
+.chevron { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform .22s ease; color: white;}
 .submenu-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
 
 /* Submenu animation */
@@ -114,18 +125,27 @@ body {
   .submenu {
     position: absolute; top: 120%; left: 0;
     min-width: 220px; padding: 8px;
-    background: #fff; border: 1px solid #eee; border-radius: 10px;
+    background: blue; border: 1px solid blue; border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,.06);
   }
   .has-submenu:hover .submenu { grid-template-rows: 1fr; opacity: 1; }
 }
+
+/* Active (current page) state matches the hover look */
+.menu a.active,
+.submenu a.active,
+.submenu-toggle.active {
+  background: darkblue;
+  font-weight: 500;
+}
+
 
 .topbar {
   display: flex;
   align-items: center;
   justify-content: space-between; /* space out left + right sides */
   padding: 10px 16px;
-  background: #fff;
+  background: blue;
   border-bottom: 1px solid #eee;
 }
 
@@ -145,7 +165,7 @@ body {
 .resume-link {
   margin-left: auto;
   padding: 8px 14px;
-  border: 1px solid #fff;         /* white border for dark headers */
+  border: 1px solid blue;         /* white border for dark headers */
   border-radius: 999px;
   color: white;                   /* text color */
   text-decoration: none;
@@ -155,6 +175,122 @@ body {
 
 .resume-link:hover {
   background: white;
-  color: #0b0b0c;                 /* dark text on hover */
+  color: white;                 /* dark text on hover */
   font-weight: 500;
 }
+
+#umichECELink {
+    color: white;
+    text-decoration: none;
+}
+
+#umichECELink:hover {
+    text-decoration: underline;
+}
+
+/* ===== HERO INTRO ANIMATION ===== */
+.hero {
+  position: relative;
+  min-height: 40vh;
+  display: grid;
+  grid-template-columns: 1.05fr auto 1fr; /* tighter spacing between name and bar */
+  align-items: center;
+  gap: 8px; /* reduce the gap between columns */
+  padding: 10px 10px; /* less padding overall */
+  background: transparent;
+  color: black;
+  display: grid;
+  /* Wider left column, bar, narrower right column pushes bar slightly right */
+  grid-template-columns: 1.15fr auto 0.85fr;
+  gap: 16px;
+}
+
+
+.slide-name {
+  margin: 0;
+  font-size: clamp(48px, 7vw, 80px); /* slightly smaller and responsive */
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;  /* <<< keeps "Sandeep Sawhney" on one line */
+  transform: translateX(0);
+  transition: transform 700ms ease, text-align 700ms ease;
+}
+
+.hero.played .slide-name {
+  text-align: left;
+  transform: translateX(-2.5vw);
+}
+
+
+/* vertical bar that drops down */
+.vbar {
+  width: 3px;
+  height: 0;                       /* animate height */
+  background: currentColor;        /* matches text color (usually white in your blue theme) */
+  opacity: 0.9;
+  transition: height 700ms ease 600ms; /* starts after name slides */
+  justify-self: start;
+  margin-left: 5px; /* nudges bar closer to name */
+}
+
+/* final bar height */
+.hero.played .vbar {
+  height: min(44vh, 360px);
+}
+
+/* typing area */
+.typewrap {
+  min-height: 180px;               /* reserve space to avoid layout shift */
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  opacity: 0;                      /* fade in when typing starts */
+  transition: opacity 300ms ease 900ms;
+}
+
+.hero.typing .typewrap { opacity: 1; }
+
+/* each line while typing gets a blinking caret via ::after */
+.typewrap p {
+  margin: 0;
+  font-size: clamp(16px, 2.3vw, 22px);
+  font-weight: 300;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;                /* hide until typed */
+}
+
+/* caret effect applied to the active span */
+.typewrap .typing::after {
+  content: "│";
+  margin-left: 2px;
+  animation: caret-blink 1s step-end infinite;
+}
+
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+
+/* Small screens: stack vertically */
+@media (max-width: 720px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    min-height: 56vh;
+    text-align: center;
+  }
+  .hero.played .slide-name {
+    transform: none;
+    text-align: center;
+  }
+  .vbar {
+    justify-self: center;
+    height: 0;
+  }
+  .hero.played .vbar {
+    height: 120px;
+  }
+}
+
+.vbar { justify-self: start; } /* nudges the bar toward the right edge of its column */
