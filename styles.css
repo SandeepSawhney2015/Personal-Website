@@ -316,3 +316,7 @@ body {
     gap: 20px; /* wider spacing between all top-level links */
   }
 }
+
+#youtubePlayer{
+  text-align: center;
+}
