@@ -26,11 +26,11 @@
       <li><a href="../index.html">Home</a></li>
 
       <li class="has-submenu">
-        <button class="submenu-toggle" aria-expanded="false">
+        <button class="submenu-toggle" aria-expanded="true">
           <span class="submenu-label">Projects</span>
           <svg aria-hidden="true" class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <ul class="submenu" hidden>
+        <ul class="submenu" aria-hidden="false">
           <li><a href="hardware.html">Hardware</a></li>
           <li><a class="active" href="software.html">Software</a></li>
         </ul>
@@ -55,62 +55,67 @@
 </header>
 
 <body>
+
+<main>
+
+  <!-- ======================
+       SOFTWARE PROJECTS
+  ====================== -->
+  <section class="projects-section">
+    <h1 id="pageHeader">Software Projects</h1>
+
+    <!-- PROJECT CARD 1 -->
+    <a class="project-card"
+      href="https://github.com/SandeepSawhney2015/MonkeyesInParis"
+      target="_blank" rel="noopener noreferrer">
+
+      <div class="project-image">
+        <img src="../project-thumbnails/monkeyesInParis.png"
+            alt="Monkeyes In Paris Thumbnail">
+      </div>
+
+      <div class="project-info">
+        <h3>Monkeyes In Paris</h3>
+        <p>A real-time webcam meme pose classifier using MediaPipe + ML.</p>
+        <span>Last Update: Nov 2025</span>
+      </div>
+
+    </a>
+
+  </section>
+
+</main>
+
+
+<!-- Everything below is BLUE area -->
 <div id="bottomHalf">
-  <main>
 
-    <section class="projects-section">
-      <h1 id="pageHeader">Software Projects</h1>
-
-      <!-- ===================
-           PROJECT CARD 1
-      ==================== -->
-      <a class="project-card"
-        href="https://github.com/SandeepSawhney2015/MonkeyesInParis"
-        target="_blank" rel="noopener noreferrer">
-
-        <div class="project-image">
-          <img src="../monkeyThumbnail.jpeg"
-              alt="Monkeyes In Paris Project Thumbnail">
-        </div>
-
-        <div class="project-info">
-          <h3>Monkey Meme Classifier</h3>
-          <p>A real-time webcam meme pose classifier using MediaPipe + ML.</p>
-          <span>Last Update: Nov 2025</span>
-        </div>
+  <section id="contact">
+    <h2>Contact & Profiles</h2>
+    <p id="contactText">
+      <a href="mailto:ssawhney@umich.edu">
+        <img src="../gmailIcon.png" alt="Gmail" width="40" height="40" class="ContactIcons">
       </a>
-
-    </section>
-
-
-    <!-- Keep Contact Section Below -->
-    <section id="contact">
-      <h2>Contact & Profiles</h2>
-      <p id="contactText">
-        <a href="mailto:ssawhney@umich.edu">
-          <img src="../gmailIcon.png" alt="Gmail" width="40" height="40" class="ContactIcons">
-        </a>
-        |
-        <a href="https://www.linkedin.com/in/sandeep-sawhney-894b12301/" target="_blank" rel="noopener noreferrer">
-          <img src="../InBug-Black.svg" alt="LinkedIn" width="30" height="30" class="ContactIcons">
-        </a>
-        |
-        <a href="https://www.instagram.com/sanders11_/" target="_blank" rel="noopener noreferrer">
-          <img src="../instagramIcon.png" alt="Instagram" width="30" height="30" class="ContactIcons">
-        </a>
-        |
-        <a href="https://github.com/SandeepSawhney2015" target="_blank" rel="noopener noreferrer">
-          <img src="../github-mark.png" alt="GitHub" width="30" height="30" class="ContactIcons">
-        </a>
-      </p>
-    </section>
-
-  </main>
+      |
+      <a href="https://www.linkedin.com/in/sandeep-sawhney-894b12301/" target="_blank" rel="noopener noreferrer">
+        <img src="../InBug-Black.svg" alt="LinkedIn" width="30" height="30" class="ContactIcons">
+      </a>
+      |
+      <a href="https://www.instagram.com/sanders11_/" target="_blank" rel="noopener noreferrer">
+        <img src="../instagramIcon.png" alt="Instagram" width="30" height="30" class="ContactIcons">
+      </a>
+      |
+      <a href="https://github.com/SandeepSawhney2015" target="_blank" rel="noopener noreferrer">
+        <img src="../github-mark.png" alt="GitHub" width="30" height="30" class="ContactIcons">
+      </a>
+    </p>
+  </section>
 
   <footer>
     <small>&copy; <span id="year"></span> Sandeep Sawhney</small><br>
     <small><a href="https://ece.engin.umich.edu/about/" id="umichECELink">Student @ University of Michigan</a></small>
   </footer>
+
 </div>
 
 <script src="../script.js" defer></script>
