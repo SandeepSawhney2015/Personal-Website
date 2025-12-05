@@ -359,9 +359,11 @@ body {
 
 .project-image img {
   width: 100%;
-  height: 240px;
+  height: 420px; /* increased height */
   object-fit: cover;
 }
+
+
 
 .project-info {
   padding: 16px 22px;
