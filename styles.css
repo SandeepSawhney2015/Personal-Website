@@ -320,3 +320,66 @@ body {
 #youtubePlayer{
   text-align: center;
 }
+
+/* ===========================
+   PROJECT CARDS STYLES
+=========================== */
+
+.projects-section {
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding-bottom: 20px;
+}
+
+#pageHeader {
+  font-size: 46px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.project-card {
+  display: block;
+  background: white;
+  border-radius: 22px;
+  overflow: hidden;
+  color: black;
+  text-decoration: none;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.16);
+  transition: transform .25s ease, box-shadow .25s ease;
+  margin-bottom: 35px;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+}
+
+.project-image img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.project-info {
+  padding: 16px 22px;
+}
+
+.project-info h3 {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.project-info p {
+  margin: 0 0 8px;
+  font-size: 0.98rem;
+  opacity: 0.85;
+}
+
+.project-info span {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}

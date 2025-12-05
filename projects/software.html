@@ -4,24 +4,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sandeep Sawhney — Portfolio</title>
-  <!--Favicon image-->
+
   <link rel="icon" type="image/png" href="../favacon-modified.png">
 
-  <!--Importing fonts-->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="../styles.css" />
-</head>
+</header>
+
 <header class="topbar">
-  <!-- Left: Hamburger -->
   <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
     <span></span><span></span><span></span>
   </button>
 
-  <!-- Slide-out / Collapsible Nav (from LEFT) -->
   <nav id="primary-nav" class="nav nav-left" data-state="closed">
     <ul class="menu">
       <li><a href="../index.html">Home</a></li>
@@ -33,7 +32,7 @@
         </button>
         <ul class="submenu" hidden>
           <li><a href="hardware.html">Hardware</a></li>
-          <li><a href="software.html">Software</a></li>
+          <li><a class="active" href="software.html">Software</a></li>
         </ul>
       </li>
 
@@ -49,47 +48,72 @@
       </li>
     </ul>
   </nav>
+
   <a href="https://www.instagram.com/sanders11_/" target="_blank" rel="noopener noreferrer">
     <img src="../iconHeaderBar.png" alt="Sandeep icon" class="topbar-icon">
   </a>
 </header>
+
 <body>
-    <center><h1>Sorry this page is still under development...</h1></center>
-    <div id="bottomHalf">
-    <main>
-      <section id="contact">
-        <h2>Contact & Profiles</h2>
-        <p id="contactText">
-          <a href="mailto:ssawhney@umich.edu">
-            <img src="../gmailIcon.png" alt="Gmail" width="40" height="40" class="ContactIcons">
-          </a>
-          |
-          <a href="https://www.linkedin.com/in/sandeep-sawhney-894b12301/" target="_blank" rel="noopener noreferrer">
-            <img src="../InBug-Black.svg" alt="LinkedIn" width="30" height="30" class="ContactIcons">
-          </a>
-          |
-          <a href="https://www.instagram.com/sanders11_/" target="_blank" rel="noopener noreferrer">
-            <img src="../instagramIcon.png" alt="Instagram" width="30" height="30" class="ContactIcons">
-          </a>
-          |
-          <a href="https://github.com/SandeepSawhney2015" target="_blank" rel="noopener noreferrer">
-            <img src="../github-mark.png" alt="GitHub" width="30" height="30" class="ContactIcons">
-          </a>
-        </p>
-      </section>
-    </main>
+<div id="bottomHalf">
+  <main>
 
-    <footer>
-      <small>&copy; <span id="year"></span> Sandeep Sawhney</small>
-      <br>
-      <small>
-        <a href="https://ece.engin.umich.edu/about/" id="umichECELink">Student @ University of Michigan</a>
-      </small>
-    </footer>
-  </div>
+    <section class="projects-section">
+      <h1 id="pageHeader">Software Projects</h1>
 
-  <!-- Scripts -->
-  <script src="../script.js" defer></script>
+      <!-- ===================
+           PROJECT CARD 1
+      ==================== -->
+      <a class="project-card"
+        href="https://github.com/SandeepSawhney2015/MonkeyesInParis"
+        target="_blank" rel="noopener noreferrer">
+
+        <div class="project-image">
+          <img src="../monkeyThumbnail.jpeg"
+              alt="Monkeyes In Paris Project Thumbnail">
+        </div>
+
+        <div class="project-info">
+          <h3>Monkey Meme Classifier</h3>
+          <p>A real-time webcam meme pose classifier using MediaPipe + ML.</p>
+          <span>Last Update: Nov 2025</span>
+        </div>
+      </a>
+
+    </section>
+
+
+    <!-- Keep Contact Section Below -->
+    <section id="contact">
+      <h2>Contact & Profiles</h2>
+      <p id="contactText">
+        <a href="mailto:ssawhney@umich.edu">
+          <img src="../gmailIcon.png" alt="Gmail" width="40" height="40" class="ContactIcons">
+        </a>
+        |
+        <a href="https://www.linkedin.com/in/sandeep-sawhney-894b12301/" target="_blank" rel="noopener noreferrer">
+          <img src="../InBug-Black.svg" alt="LinkedIn" width="30" height="30" class="ContactIcons">
+        </a>
+        |
+        <a href="https://www.instagram.com/sanders11_/" target="_blank" rel="noopener noreferrer">
+          <img src="../instagramIcon.png" alt="Instagram" width="30" height="30" class="ContactIcons">
+        </a>
+        |
+        <a href="https://github.com/SandeepSawhney2015" target="_blank" rel="noopener noreferrer">
+          <img src="../github-mark.png" alt="GitHub" width="30" height="30" class="ContactIcons">
+        </a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <small>&copy; <span id="year"></span> Sandeep Sawhney</small><br>
+    <small><a href="https://ece.engin.umich.edu/about/" id="umichECELink">Student @ University of Michigan</a></small>
+  </footer>
+</div>
+
+<script src="../script.js" defer></script>
+
 </body>
 </html>
-</body>
