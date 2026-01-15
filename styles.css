@@ -394,7 +394,6 @@ body {
 .hero.played .vbar{
     width: min(60vw, 320px);
     height: 3px;
-  }
 }
 
 
