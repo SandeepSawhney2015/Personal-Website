@@ -1,4 +1,6 @@
 body {
+  overflow-x: hidden;
+
   font-family: "Funnel Display", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
@@ -33,12 +35,6 @@ body {
     padding: 10px;
 }
 
-#name {
-    font-size: 100px;
-    font-weight: 600;
-    text-align: center;
-}
-
 /* Top bar aligned left */
 .topbar {
   position: sticky; top: 0; z-index: 1000;
@@ -62,7 +58,7 @@ body {
   width: 36px; height: 36px; padding: 6px;
   border: 0; background: transparent; cursor: pointer;
 }
-.hamburger span { display: block; height: 2px; width: 100%; background: #111; transition: transform .25s ease, opacity .25s ease; }
+.hamburger span { display: block; height: 2px; width: 100%; background: white; transition: transform .25s ease, opacity .25s ease; }
 .hamburger[aria-expanded="true"] span:nth-child(1){ transform: translateY(6px) rotate(45deg); }
 .hamburger[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
 .hamburger[aria-expanded="true"] span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
@@ -188,112 +184,102 @@ body {
     text-decoration: underline;
 }
 
-/* ===== HERO INTRO ANIMATION ===== */
-.hero {
+/* ===== HERO INTRO ANIMATION (responsive + universal) ===== */
+.hero{
   position: relative;
-  min-height: 40vh;
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: clamp(18px, 4vw, 70px) clamp(16px, 4vw, 72px);
+  min-height: clamp(360px, 52vh, 620px);
   display: grid;
-  grid-template-columns: 1.05fr auto 1fr; /* tighter spacing between name and bar */
+  grid-template-columns: 1fr 3px minmax(260px, 420px);
   align-items: center;
-  gap: 8px; /* reduce the gap between columns */
-  padding: 10px 10px; /* less padding overall */
-  background: transparent;
+  gap: clamp(14px, 3vw, 44px);
   color: black;
-  display: grid;
-  /* Wider left column, bar, narrower right column pushes bar slightly right */
-  grid-template-columns: 1.15fr auto 0.85fr;
-  gap: 16px;
 }
 
-
-.slide-name {
+.slide-name{
   margin: 0;
-  font-size: clamp(48px, 7vw, 80px); /* slightly smaller and responsive */
+  font-size: clamp(44px, 6.6vw, 98px);
   font-weight: 700;
-  line-height: 1.1;
-  text-align: center;
-  white-space: nowrap;  /* <<< keeps "Sandeep Sawhney" on one line */
-  transform: translateX(0);
-  transition: transform 700ms ease, text-align 700ms ease;
-}
-
-.hero.played .slide-name {
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   text-align: left;
-  transform: translateX(-2.5vw);
+  white-space: normal;          /* allow wrap on smaller widths */
+  overflow-wrap: anywhere;      /* prevent off-screen clipping */
+  max-width: 100%;
+  transform: none;
+  transition: none;
 }
-
 
 /* vertical bar that drops down */
-.vbar {
+.vbar{
   width: 3px;
-  height: 0;                       /* animate height */
-  background: currentColor;        /* matches text color (usually white in your blue theme) */
+  height: 0;
+  background: currentColor;
   opacity: 0.9;
-  transition: height 700ms ease 600ms; /* starts after name slides */
-  justify-self: start;
-  margin-left: 5px; /* nudges bar closer to name */
+  transition: height 700ms ease 250ms;
+  justify-self: center;
 }
 
 /* final bar height */
-.hero.played .vbar {
+.hero.played .vbar{
   height: min(44vh, 360px);
 }
 
 /* typing area */
-.typewrap {
-  min-height: 180px;               /* reserve space to avoid layout shift */
+.typewrap{
+  min-height: 180px;
   display: grid;
   align-content: center;
-  gap: 8px;
-  opacity: 0;                      /* fade in when typing starts */
-  transition: opacity 300ms ease 900ms;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 300ms ease 450ms;
 }
 
-.hero.typing .typewrap { opacity: 1; }
+.hero.typing .typewrap{ opacity: 1; }
 
 /* each line while typing gets a blinking caret via ::after */
-.typewrap p {
+.typewrap p{
   margin: 0;
-  font-size: clamp(16px, 2.3vw, 22px);
+  font-size: clamp(15px, 1.45vw, 20px);
   font-weight: 300;
   letter-spacing: 0.2px;
-  white-space: nowrap;
-  overflow: hidden;                /* hide until typed */
+  white-space: normal;          /* wrap if needed */
+  overflow: visible;
 }
 
 /* caret effect applied to the active span */
-.typewrap .typing::after {
+.typewrap .typing::after{
   content: "│";
   margin-left: 2px;
   animation: caret-blink 1s step-end infinite;
 }
 
-@keyframes caret-blink {
-  50% { opacity: 0; }
-}
+@keyframes caret-blink{ 50%{ opacity: 0; } }
 
 /* Small screens: stack vertically */
-@media (max-width: 720px) {
-  .hero {
+@media (max-width: 900px){
+  .hero{
     grid-template-columns: 1fr;
-    gap: 16px;
-    min-height: 56vh;
-    text-align: center;
+    min-height: auto;
+    padding-top: clamp(22px, 5vw, 56px);
+    padding-bottom: clamp(22px, 6vw, 64px);
+    text-align: left;
   }
-  .hero.played .slide-name {
-    transform: none;
-    text-align: center;
-  }
-  .vbar {
-    justify-self: center;
+  .vbar{
+    justify-self: start;
     height: 0;
   }
-  .hero.played .vbar {
+  .hero.played .vbar{
     height: 120px;
+  }
+  .typewrap{
+    min-height: 0;
   }
 }
 
-.vbar { justify-self: start; } /* nudges the bar toward the right edge of its column */
+/* nudges the bar toward the right edge of its column */
 
 #contactPageHeader{
     font-size: 50px;
@@ -388,4 +374,18 @@ body {
 
 #pageDescription {
   text-align: center;
+}
+
+/* Responsive YouTube embed */
+#youtubePlayer{
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px 0;
+}
+#youtubePlayer iframe{
+  width: min(900px, 100%);
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  border-radius: 18px;
 }
